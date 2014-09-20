@@ -5,25 +5,38 @@ library(ggplot2)
 
 # mum pup 
 scent_abundance <- as.data.frame(t(read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                                  "MSc.Behaviour\\Research\\Seal Scent\\R code\\",
-                                                  "data\\csv_files\\scent abundances.csv", 
+                                                  "projects\\sealscent\\data_files\\",
+                                                  "Rdata\\csv_files\\scent abundances.csv", 
                                                   sep = ""), row.names=1)))
-coord <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                  "MSc.Behaviour\\Research\\Seal Scent\\R code\\",
-                  "data\\csv_files\\coordinates.csv",
-                  sep = ""),row.names=1) 
 
-factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                          "MSc.Behaviour\\Research\\Seal Scent\\",
-                          "R code\\data\\csv_files\\",
-                          "factors.csv", sep = ""),
-                        row.names=1) 
+# diversity measures
+scent_diversity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                                  "projects\\sealscent\\data_files\\",
+                                  "Rdata\\csv_files\\",
+                                  "scent diversity.csv", sep = ""),
+                            row.names=1)
 
+# relatedness matrix (old: relatedness_41loci.csv)
+relatedness <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                              "projects\\sealscent\\data_files\\",
+                              "Rdata\\csv_files\\",
+                              "relatednessnew.csv", sep = ""),
+                        row.names=1)
+
+## heterozygosity SH
 heterozygosity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                 "MSc.Behaviour\\Research\\Seal Scent\\",
-                                 "R code\\data\\csv_files\\",
+                                 "projects\\sealscent\\data_files\\",
+                                 "Rdata\\csv_files\\",
                                  "heterozygosity_41loci.csv", sep = ""),
-                                row.names=1) 
+                           row.names=1) 
+
+# beach and family factor
+factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                          "projects\\sealscent\\data_files\\",
+                          "Rdata\\csv_files\\",
+                          "factors.csv", sep = ""),
+                    row.names=1) 
+
 
 # subset beach
 scent_beach1 <- scent_abundance[factors$Beach==2, ]
@@ -35,6 +48,8 @@ abund_pups <- scent_beach1[22:42, ]
 # simper_mp_ind <- c(58,60,68,74,86,90,96,107,164,181,189,209)
 # new version
 simper_mp_ind <- c(58, 68,  86,  90, 98, 106, 107, 164, 181)
+# short
+simper_mp_ind <- c(58, 68,  86,  90, 106, 107, 164)
 names(scent_abundance)[simper_mp_ind]
 
 # plotting mum vs pup concentration in best mum-pup substances

@@ -4,25 +4,31 @@ library(ggplot2)
 library(vegan)
 # mum pup 
 scent_abundance <- as.data.frame(t(read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                                  "MSc.Behaviour\\Research\\Seal Scent\\R code\\",
-                                                  "data\\csv_files\\scent abundances.csv", 
+                                                  "projects\\sealscent\\data_files\\",
+                                                  "Rdata\\csv_files\\scent abundances.csv", 
                                                   sep = ""), row.names=1)))
-coord <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                        "MSc.Behaviour\\Research\\Seal Scent\\R code\\",
-                        "data\\csv_files\\coordinates.csv",
-                        sep = ""),row.names=1) 
 
-factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                          "MSc.Behaviour\\Research\\Seal Scent\\",
-                          "R code\\data\\csv_files\\",
-                          "factors.csv", sep = ""),
-                        row.names=1) 
+# relatedness matrix (old: relatedness_41loci.csv)
+relatedness <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                              "projects\\sealscent\\data_files\\",
+                              "Rdata\\csv_files\\",
+                              "relatednessnew.csv", sep = ""),
+                        row.names=1)
 
+## heterozygosity SH
 heterozygosity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                 "MSc.Behaviour\\Research\\Seal Scent\\",
-                                 "R code\\data\\csv_files\\",
+                                 "projects\\sealscent\\data_files\\",
+                                 "Rdata\\csv_files\\",
                                  "heterozygosity_41loci.csv", sep = ""),
                            row.names=1) 
+
+# beach and family factor
+factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                          "projects\\sealscent\\data_files\\",
+                          "Rdata\\csv_files\\",
+                          "factors.csv", sep = ""),
+                    row.names=1) 
+
 
 
 # get simper results in
