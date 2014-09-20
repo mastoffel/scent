@@ -1,0 +1,23 @@
+## visualize all mantels
+library(ggplot2)
+library(ecodist)
+library(xlsx)
+source("multiplot.R")
+source("visualize.R")
+
+p1 <- visualize(1,4,"Scent Concentration")
+p2 <- visualize(1,10, "Scent Pres/Abs")
+p3 <- visualize(1,5, "Scent Concentration - best 84 components")
+p4 <- visualize(1,11, "Scent Pres/Abs - best 46 components")
+p5 <- visualize(2,6, "Scent Concentration Mums","blue")
+p6 <- visualize(2,12, "Scent Pres/Abs Mums","blue")
+p7 <- visualize(2,7, "Scent Concentration Mums - best 91 components", "blue")
+p8 <- visualize(2,13, "Scent Pres/Abs Mums - best 93 components","blue")
+p9 <- visualize(3,8, "Scent Concentration Pups","red")
+p10 <- visualize(3,14, "Scent Pres/Abs Pups","red")
+p11 <- visualize(3,9, "Scent Concentration Pups - best 70 components", "red")
+p12 <- visualize(3,15, "Scent Pres/Abs Pups - best 40 components", "red")
+
+multiplot(p1,p2,p3,p4,cols = 2)
+multiplot(p5,p6,p7,p8, cols = 2)                      
+multiplot(p9,p10,p11,p12, cols = 2)
