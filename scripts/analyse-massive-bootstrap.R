@@ -9,13 +9,13 @@ library(reshape2)
 
 # load compounds from bootstrap!
 best_mums <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                  "MSc.Behaviour\\Research\\Seal Scent\\",
-                                  "R code\\data\\csv_files\\",
-                                  "bootstrap_mums.csv", sep = ""),
-                                   row.names=1)
+                            "projects\\sealscent\\data_files\\",
+                            "Rdata\\csv_files\\",
+                            "bootstrap_mums.csv", sep = ""),
+                             row.names=1)
 best_pups <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                            "MSc.Behaviour\\Research\\Seal Scent\\",
-                            "R code\\data\\csv_files\\",
+                            "projects\\sealscent\\data_files\\",
+                            "Rdata\\csv_files\\",
                             "bootstrap_pups.csv", sep = ""),
                              row.names=1)
 
@@ -34,38 +34,38 @@ ggplot(best_df, aes(x = x, y = occurences, colour = age)) +
 
 # significance development------------------------------------------------------
 
-# loading
 scent_abundance <- as.data.frame(t(read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                                  "MSc.Behaviour\\Research\\Seal Scent\\R code\\",
-                                                  "data\\csv_files\\scent abundances.csv", 
+                                                  "projects\\sealscent\\data_files\\",
+                                                  "Rdata\\csv_files\\scent abundances.csv", 
                                                   sep = ""), row.names=1)))
-# relatedness matrix (old: relatedness_41loci.csv)
-relatedness <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                              "MSc.Behaviour\\Research\\Seal Scent\\",
-                              "R code\\data\\csv_files\\",
-                              "relatednessnew.csv", sep = ""),
-                              row.names=1)
 
 # diversity measures
 scent_diversity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                  "MSc.Behaviour\\Research\\Seal Scent\\",
-                                  "R code\\data\\csv_files\\",
+                                  "projects\\sealscent\\data_files\\",
+                                  "Rdata\\csv_files\\",
                                   "scent diversity.csv", sep = ""),
                             row.names=1)
 
+# relatedness matrix (old: relatedness_41loci.csv)
+relatedness <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                              "projects\\sealscent\\data_files\\",
+                              "Rdata\\csv_files\\",
+                              "relatednessnew.csv", sep = ""),
+                        row.names=1)
+
 ## heterozygosity SH
 heterozygosity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                 "MSc.Behaviour\\Research\\Seal Scent\\",
-                                 "R code\\data\\csv_files\\",
+                                 "projects\\sealscent\\data_files\\",
+                                 "Rdata\\csv_files\\",
                                  "heterozygosity_41loci.csv", sep = ""),
                            row.names=1) 
 
 # beach and family factor
 factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                          "MSc.Behaviour\\Research\\Seal Scent\\",
-                          "R code\\data\\csv_files\\",
+                          "projects\\sealscent\\data_files\\",
+                          "Rdata\\csv_files\\",
                           "factors.csv", sep = ""),
-                          row.names=1) 
+                    row.names=1) 
 
 # subset------------------------------------------------------------------------
 
@@ -149,7 +149,7 @@ ggplot(lf_mantel[1:99, ], aes(x = x, y = value, colour = variable)) +
 
 #span maybe 0.13
 ggplot(lf_mantel[1:99, ], aes(x = x, y = value)) +
-        stat_smooth(se = FALSE, span = 0.13, size = 1.5, method = "loess") +
+        stat_smooth(se = FALSE, span = 0.11, size = 1.5, method = "loess") +
         geom_point(colour = "black", size = 3, alpha = 0.4) +
         theme_minimal(base_size = 26) +
         theme(strip.text.x = element_text(vjust=1,size = 18),
@@ -178,8 +178,8 @@ paste(comp_ind_m, collapse = ",")
 
 # factor analysis
 library(HDMD)
-scent_fa <- factor.pa.ginv(scent_abundance, nfactors = 4, prerotate=F,
-                           rotate = "varimax", scores = T, m=4)
+scent_fa <- factor.pa.ginv(scent_abundance, nfactors = 4, prerotate=T,
+                           rotate = "promax", scores = T, m=4)
 
 # extract loadings to new matrix
 load    <- scent_fa$loadings
@@ -205,7 +205,8 @@ simper_beach <- simper(scent_abundance, beach)
 simper_beach_names <- rownames(summary(simper_beach)[[1]])
 
 simper_beach_ind <- which(names(scent_abundance) %in% simper_beach_names[1:15])
-simper_mp_ind <- c(58,60,68,74,86,90,96,107,164,181,189,209) # best 2 from each pair
+# top 5 from each pair sorted by occurences, than 7 comps occured in more than 10 pairs
+simper_mp_ind <- c(58, 68,  86,  90, 106, 107, 164) 
 
 # add beach and mp best substances factor
 loaddf$bestenv <- 0
@@ -287,9 +288,9 @@ multiplot(allfig2[[1]], allfig2[[2]], allfig2[[3]], allfig2[[4]], cols = 2)
 
 
 # extracting loess for sigma plot
-mod <- loess(lf_mantel$value[1:99] ~ lf_mantel$x[1:99], span = 0.2)
+mod <- loess(lf_mantel$value[1:99] ~ lf_mantel$x[1:99], span = 0.08)
 plot(lf_mantel$value[1:99] ~ lf_mantel$x[1:99])
 plot(mod)
 lines(predict(mod))
 xfit <- predict(mod, newdata = seq(0,100,0.1), band="local")
-write.csv(xfit, "loess.csv")
+write.csv(xfit, "loess08.csv")

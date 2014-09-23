@@ -29,6 +29,12 @@ heterozygosity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
                                  "Rdata\\csv_files\\",
                                  "heterozygosity_41loci.csv", sep = ""),
                            row.names=1) 
+# coordinates
+coord <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                        "projects\\sealscent\\data_files\\",
+                        "Rdata\\csv_files\\",
+                        "coordinates.csv", sep = ""),
+                  row.names=1) 
 
 # beach and family factor
 factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
@@ -39,11 +45,11 @@ factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
 
 
 # subset beach
-scent_beach1 <- scent_abundance[factors$Beach==2, ]
+scent_beach1 <- scent_abundance #[factors$Beach==2, ]
 
 # 
-abund_mums <- scent_beach1[1:21, ]
-abund_pups <- scent_beach1[22:42, ]
+abund_mums <- scent_beach1[1:41, ]
+abund_pups <- scent_beach1[42:82, ]
 
 # simper_mp_ind <- c(58,60,68,74,86,90,96,107,164,181,189,209)
 # new version

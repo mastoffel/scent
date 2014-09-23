@@ -49,7 +49,7 @@ factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
 # choose ordination method and get scores---------------------------------------
 
 allscores <- get_scores(scent_abundance, method = "fa", num_dim = 4, 
-                        rotation = "varimax")
+                        rotation = "promax")
 
 # get subsets for age ("mums", "pups", "all") and beach (0 = all, 1, 2)---------
 

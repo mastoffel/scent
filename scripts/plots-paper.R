@@ -98,7 +98,7 @@ fa.dens.plot.1 <- ggplot(scores,aes(x = F1)) +
  ggsave(file="F2 scores.pdf", width=151.585, height=111.539, units=c("mm"),useDingbats=FALSE)
  
  fa.dens.plot.3 <- ggplot(scores,aes(x=F3)) +
-         geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1.3) +
+         geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1.5) +
          scale_fill_manual(values = c("blue","red")) +
          guides(fill=guide_legend(title=NULL)) +
          theme.paper.scores + 
