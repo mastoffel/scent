@@ -11,10 +11,10 @@ gen_mum <- genotypes[1:41, ]
 scent_abundance <- as.data.frame(t(read.csv(".\\data\\scent abundances.csv", row.names=1)))
 
 # best comps
-comp_ind_m <- c(36,52,86,88,96,103,110,203,206)
+comp_ind_m <- c(36,52,86,88,96,103,110,203,206,207)
 
 # bc mat for mums
-scent <- scent_abundance[1:41, ]
+scent <- scent_abundance[1:41, comp_ind_m]
 scent_bc <- vegdist(scent)
 scent_mat <- as.matrix(scent_bc)
 scent_mat[upper.tri(scent_mat)] <- 0

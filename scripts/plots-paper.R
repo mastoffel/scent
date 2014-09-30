@@ -87,7 +87,7 @@ fa.dens.plot.1 <- ggplot(scores,aes(x = F1)) +
  ggsave(file="F1 scores.pdf", width=151.585, height=111.539, units=c("mm"),useDingbats=FALSE)
  
  fa.dens.plot.2 <- ggplot(scores,aes(x=F2)) +
-         geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1.5) +
+         geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1) +
          scale_fill_manual(values = c("blue","red")) +
          guides(fill=guide_legend(title=NULL)) +
          theme.paper.scores + 
@@ -98,7 +98,7 @@ fa.dens.plot.1 <- ggplot(scores,aes(x = F1)) +
  ggsave(file="F2 scores.pdf", width=151.585, height=111.539, units=c("mm"),useDingbats=FALSE)
  
  fa.dens.plot.3 <- ggplot(scores,aes(x=F3)) +
-         geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1.5) +
+         geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1) +
          scale_fill_manual(values = c("blue","red")) +
          guides(fill=guide_legend(title=NULL)) +
          theme.paper.scores + 
@@ -111,7 +111,7 @@ fa.dens.plot.1 <- ggplot(scores,aes(x = F1)) +
  
  
 fa.dens.plot.4 <- ggplot(scores,aes(x=F4)) +
-        geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1.5) +
+        geom_density(alpha=0.8, size=0.5, aes(fill = beach),adjust=1) +
         guides(fill=guide_legend(title=NULL,direction="horizontal",colour = guide_legend(override.aes = list(shape=NA)))) +
         scale_fill_manual(values = c("blue","red"),labels=c("Special Study Beach  ","Freshwater Beach")) +
         theme.paper.scores  + 

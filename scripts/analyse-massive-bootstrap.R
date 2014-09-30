@@ -7,7 +7,8 @@ library(vegan)
 source("multiplot.R")
 library(reshape2)
 
-# load compounds from bootstrap!
+# list of compounds which resulted out of the bootstrapped bio-env
+
 best_mums <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
                             "projects\\sealscent\\data_files\\",
                             "Rdata\\csv_files\\",
@@ -166,7 +167,8 @@ ggplot(lf_mantel[1:99, ], aes(x = x, y = value)) +
 # best vs. factorloading---------------------------------------------------------
 
 # get indices of compounds within scent_abundance
-comp_ind_m <- which(colnames(scent_abundance) %in% sub_names_mums[1:9])
+comp_ind_m <- which(colnames(scent_abundance) %in% sub_names_mums[1:10])
+comp_ind_m <- c(36,52,86,88,96,103,110,203,206,207)
 comp_ind_p <- which(colnames(scent_abundance) %in% sub_names_pups[1:20])
 
 # PRIMER ready

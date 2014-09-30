@@ -14,7 +14,7 @@ factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
 
 # elements
 simper_mp_ind <- c(58, 68,  86,  90, 106, 107, 164)
-comp_ind_m <- c(36,52,86,88,96,103,110,203,206)
+comp_ind_m <- c(36,52,86,88,96,103,110,203,206,207)
 # add beach factor
 scent <- cbind(scent_abundance, factors$Beach)
 names(scent)[length(names(scent))] <- "beach"

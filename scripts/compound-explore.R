@@ -51,14 +51,14 @@ scent_beach1 <- scent_abundance #[factors$Beach==2, ]
 abund_mums <- scent_beach1[1:41, ]
 abund_pups <- scent_beach1[42:82, ]
 
-# simper_mp_ind <- c(58,60,68,74,86,90,96,107,164,181,189,209)
+simper_mp_ind <- c(58,60,68,74,86,90,96,107,164,181,189,209)
 # new version
-simper_mp_ind <- c(58, 68,  86,  90, 98, 106, 107, 164, 181)
+# simper_mp_ind <- c(58, 68,  86,  90, 98, 106, 107, 164, 181)
 # short
-simper_mp_ind <- c(58, 68,  86,  90, 106, 107, 164)
+# simper_mp_ind <- c(58, 68,  86,  90, 106, 107, 164)
 names(scent_abundance)[simper_mp_ind]
 
-# plotting mum vs pup concentration in best mum-pup substances
+# plotting mum vs pup concentration in best mum-pup substances------------------
 
 plotM <- function(l){
         

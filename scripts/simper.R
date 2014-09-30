@@ -2,57 +2,80 @@
 
 library(ggplot2)
 library(vegan)
+
 # mum pup 
 scent_abundance <- as.data.frame(t(read.csv(paste("C:\\Users\\Martin\\Studium\\",
                                                   "projects\\sealscent\\data_files\\",
                                                   "Rdata\\csv_files\\scent abundances.csv", 
-                                                  sep = ""), row.names=1)))
+                                                   sep = ""), row.names=1)))
 
 # relatedness matrix (old: relatedness_41loci.csv)
 relatedness <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
                               "projects\\sealscent\\data_files\\",
                               "Rdata\\csv_files\\",
                               "relatednessnew.csv", sep = ""),
-                        row.names=1)
+                               row.names=1)
 
 ## heterozygosity SH
 heterozygosity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
                                  "projects\\sealscent\\data_files\\",
                                  "Rdata\\csv_files\\",
                                  "heterozygosity_41loci.csv", sep = ""),
-                           row.names=1) 
+                                  row.names=1) 
 
 # beach and family factor
 factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
                           "projects\\sealscent\\data_files\\",
                           "Rdata\\csv_files\\",
                           "factors.csv", sep = ""),
-                    row.names=1) 
+                           row.names=1) 
 
 
+# beach simper results
+options(scipen=8)
 
-# get simper results in
+beach <- as.factor(factors$Beach)
+simper_beach <- simper(scent_abundance, beach)
+
+simper_beach_names <- rownames(summary(simper_beach)[[1]])
+simper_beach_ind <- which(names(scent_abundance) %in% simper_beach_names[1:15])
+contribution <- summary(simper_beach)[[1]]$contr[1:15]
+
+
 source("extract_simper.R")
-simp_one <- extract_simper("beach_one_simper.csv")
-simp_two <- extract_simper("beach_two_simper.csv")
 
+# mum-pup simper results from primer
 simp <- extract_simper("allsimper.csv")
 
-# best two substances from every pair per beach---------------------------------
-toptwo_b1 <- sapply(simp_one, function(x) x$comp[1:2])
-table(toptwo_b1)
-toptwo_b2 <- sapply(simp_two, function(x) x$comp[1:2])
-table(toptwo_b2)
-
 # best substances from all samples----------------------------------------------
-topfive <- sapply(simp, function(x) x$comp[1:5])
+# new idea: sorting substances by the average variance explained
 
-hist(table(topfive), breaks=c(1:41))
+toptwo <- sapply(simp, function(x) x$comp[1:2])
+topcom <-  sapply(simp, function(x) x$comp[1:length(comp)])
+vars <- sapply(simp, function(x) x$var[1:length(var)])
 
-comps <- sort(table(topfive), decreasing = TRUE)
+library(plyr)
+library(dplyr)
+
+# all best simper substances plus explained variances in one data.frame
+allsimp <- ldply(simp, data.frame)
+
+allsimp$comp <- as.factor(allsimp$comp)
+allsimp$var <- as.numeric(allsimp$comp)
+
+simpsum <- allsimp %>%
+                group_by(comp) %>%
+                summarise(
+                meanvar = mean(var, na.rm = TRUE),
+                  meansd = sd(var, na.rm = TRUE))
+
+
+hist(table(toptwo), breaks=c(1:41))
+
+comps <- sort(table(toptwo), decreasing = TRUE)
 
 # getting top compounds
-topcomp <- names(sort(table(topfive), decreasing = TRUE)[1:9])
+topcomp <- names(sort(table(toptwo), decreasing = TRUE)[1:9])
 top_mp_ind <- which(names(scent_abundance) %in% topcomp)
 
 # top comps
