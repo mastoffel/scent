@@ -45,17 +45,16 @@ factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
 
 
 # subset beach
-scent_beach1 <- scent_abundance #[factors$Beach==2, ]
+scent_beach <- scent_abundance[factors$Beach==2, ]
 
 # 
-abund_mums <- scent_beach1[1:41, ]
-abund_pups <- scent_beach1[42:82, ]
+len <- nrow(scent_beach)
+abund_mums <- scent_beach[1:(len/2), ]
+abund_pups <- scent_beach[(1+(len/2)):len, ]
 
 simper_mp_ind <- c(58,60,68,74,86,90,96,107,164,181,189,209)
-# new version
-# simper_mp_ind <- c(58, 68,  86,  90, 98, 106, 107, 164, 181)
-# short
-# simper_mp_ind <- c(58, 68,  86,  90, 106, 107, 164)
+# simper_mp_ind<- c(36,52,86,88,96,103,110,203,206,207) ## this is RELATEDNESS!!!
+
 names(scent_abundance)[simper_mp_ind]
 
 # plotting mum vs pup concentration in best mum-pup substances------------------
@@ -69,13 +68,17 @@ plotM <- function(l){
         
         # check if the contain at least two pairs
         df <- cbind(mums_temp, pups_temp)
-        count <- apply(df, 1, function(x) !(is.na(x[1] & x[2])))
-       
-        if (sum(count) >= 3) {
-        plot(mums_temp, pups_temp, xlab="mums",ylab="pups",
-             main=paste("element:", toString(names(scent_abundance)[l])))
-        abline(lm((mums_temp ~ pups_temp)))
+        countna <- apply(df, 1, function(x) !(is.na(x[1] & x[2])))
         
+        
+        if (sum(countna) >= 3 & any(mums_temp!=0) & any(pups_temp!=0)) {
+        plot(mums_temp, pups_temp, xlab="mums",ylab="pups",
+             main=paste("element beach 2:", toString(names(scent_abundance)[l])))
+        abline(lm((mums_temp ~ pups_temp)))
+        mod <- summary(lm(mums_temp ~ pups_temp))
+        pval <- mod$coeff[2,4]
+        legend("bottomright", bty="n", legend=paste("p = ",
+                format(pval, digits = 3)) )
         
         }
 }

@@ -68,5 +68,8 @@ ggplot(df, aes(x = substances, y = conc)) +
         geom_boxplot(colour = "black", lwd = 1) +
         theme.paper.scores +
         # coord_flip() +
-        ylab("concentration") +
-        guides(fill = FALSE)
+        ylab("sd relative conc") +
+        guides(fill = FALSE) +
+        theme(plot.margin = unit(c(2,2,2,2), "cm"),
+               axis.title.y = element_text(vjust = 1.7),
+               axis.title.x = element_text(vjust = 0.02))

@@ -1,7 +1,6 @@
 # selfing rate (g2) from microsat genotype data---------------------------------
 data <- read.table("raw_41loci_ordered.txt", row.names = 1)
 
-
 # turn data into 0 (homozygote), 1 (heterozygote) or -1 (NA on one locus)
 
 checkhet <- function(x) {
