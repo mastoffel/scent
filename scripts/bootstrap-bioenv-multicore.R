@@ -1,7 +1,6 @@
 # resampling test for finding out the substances associated with relatedness
 # parallel computing using 40 cores
 
-
 library(vegan)
 library(stringr)
 library(dplyr)
@@ -13,6 +12,7 @@ source("bio.env.R")
 
 scent_abundance <- as.data.frame(t(read.csv(paste(".\\csv_files\\scent abundances.csv", 
                                                   sep = ""), row.names=1)))
+
 relatedness <- read.csv(paste(".\\csv_files\\relatednessnew.csv", sep = ""),
                                 row.names=1) 
 

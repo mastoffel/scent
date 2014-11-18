@@ -55,6 +55,40 @@ het_plot <- ggplot(het_df, aes(x=het, y=num_comps)) +
          
 ggsave(file="hetall.pdf", width=151.585, height=111.539, units=c("mm"),useDingbats=FALSE)
 
+# het vs. shannon index (het_df from shannon-index.R)
+ het_plot <- ggplot(het_df, aes(x=het, y=Shannon)) +
+         geom_point(colour = "black", size = 2.5) +
+         geom_smooth(method="lm",size = 1 ,alpha=0.13, colour="black", fill = "lightgreen") +
+         theme_minimal(base_size = 36) +
+         theme(strip.text.x = element_text(vjust=1,size = 28),
+               axis.title.x = element_text(vjust= -2 ,size = 36),
+               axis.title.y = element_text(vjust=3,size = 36),
+               axis.ticks.x = element_blank(),
+               axis.ticks.y = element_blank(),
+               plot.margin = (unit(c(.5, .5, 2, 2), "cm"))) +
+         scale_x_continuous(breaks=c(seq(from = 0.8, to = 1.20, by = 0.1))) +
+         #geom_text(aes(0.85,80, label="(a) r = 0.34, p = 0.027"),size=4) +
+         xlab("multilocus heterozygosity") +
+         ylab("Shannon index") 
+ 
+ ggsave(file="hetall.pdf", width=151.585, height=111.539, units=c("mm"),useDingbats=FALSE)
+ 
+ # het vs. simpson index (het_df from shannon-index.R)
+ het_plot <- ggplot(het_df, aes(x=het, y=InvSimpson)) +
+         geom_point(colour = "black", size = 2.5) +
+         geom_smooth(method="lm",size = 1 ,alpha=0.13, colour="black", fill = "slateblue1") +
+         theme_minimal(base_size = 36) +
+         theme(strip.text.x = element_text(vjust=1,size = 28),
+               axis.title.x = element_text(vjust= -2 ,size = 36),
+               axis.title.y = element_text(vjust=3,size = 36),
+               axis.ticks.x = element_blank(),
+               axis.ticks.y = element_blank(),
+               plot.margin = (unit(c(.5, .5, 2, 2), "cm"))) +
+         scale_x_continuous(breaks=c(seq(from = 0.8, to = 1.20, by = 0.1))) +
+         #geom_text(aes(0.85,80, label="(a) r = 0.34, p = 0.027"),size=4) +
+         xlab("multilocus heterozygosity") +
+         ylab("Inverse Simpson index") 
+
 # relatedness
 
 rel_fa <- ggplot(relate_df, aes(x = relatedness, y = F1)) +

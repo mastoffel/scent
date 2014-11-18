@@ -38,10 +38,6 @@ getmean <- function(x) {
         out <- mean(x)
 }
 
-getsd <- function(x) {
-        #out <- sd(x[x!=0])
-        out <- sd(x)
-}
 
 mp_conc <- sapply(scent_abundance[, simper_mp_ind], getmean)
 beach_conc <- sapply(scent_abundance[, simper_beach_ind], getmean)
@@ -65,7 +61,7 @@ df$substances <- factor(df$substances, labels = c("beach", "mumpup", "relatednes
 
 # fill = substances
 ggplot(df, aes(x = substances, y = conc)) +
-        geom_boxplot(colour = "black", lwd = 1) +
+        geom_boxplot(colour = "black", lwd = 0.3) +
         theme.paper.scores +
         # coord_flip() +
         ylab("sd relative conc") +
@@ -73,3 +69,5 @@ ggplot(df, aes(x = substances, y = conc)) +
         theme(plot.margin = unit(c(2,2,2,2), "cm"),
                axis.title.y = element_text(vjust = 1.7),
                axis.title.x = element_text(vjust = 0.02))
+
+aov.mean <- aov(conc ~ substances, data=df)

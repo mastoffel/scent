@@ -1,7 +1,6 @@
 # plot stuff for presentation
 
-load("C:/Users/Martin/Studium/MSc.Behaviour/Research/",
-     "Seal Scent/R code/Microsatellites/old/Results4Factor.RData")
+load("C:/Users/Martin/Studium/projects/sealscent/Rscripts/microsats/old/Results4Factor.RData")
 
 library(grid)
 library(ggplot2)

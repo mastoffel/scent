@@ -45,13 +45,17 @@ contribution <- summary(simper_beach)[[1]]$contr[1:15]
 source("extract_simper.R")
 
 # mum-pup simper results from primer
-simp <- extract_simper("allsimper.csv")
+simp <- extract_simper((paste("C:\\Users\\Martin\\Studium\\",
+                                     "projects\\sealscent\\data_files\\",
+                                     "Rdata\\csv_files\\",
+                                     "allsimper.csv", sep = "")) 
 
+                       
 # best substances from all samples----------------------------------------------
 # new idea: sorting substances by the average variance explained
 
 toptwo <- sapply(simp, function(x) x$comp[1:2])
-topcom <-  sapply(simp, function(x) x$comp[1:length(comp)])
+# topcom <-  sapply(simp, function(x) x$comp[1:length(comp)])
 vars <- sapply(simp, function(x) x$var[1:length(var)])
 
 library(plyr)
@@ -67,7 +71,7 @@ simpsum <- allsimp %>%
                 group_by(comp) %>%
                 summarise(
                 meanvar = mean(var, na.rm = TRUE),
-                  meansd = sd(var, na.rm = TRUE))
+                 meansd = sd(var, na.rm = TRUE))
 
 
 hist(table(toptwo), breaks=c(1:41))
@@ -75,9 +79,29 @@ hist(table(toptwo), breaks=c(1:41))
 comps <- sort(table(toptwo), decreasing = TRUE)
 
 # getting top compounds
-topcomp <- names(sort(table(toptwo), decreasing = TRUE)[1:9])
+topcomp <- names(sort(table(toptwo), decreasing = TRUE))
 top_mp_ind <- which(names(scent_abundance) %in% topcomp)
 
 # top comps
 top_mp_ind <- c(58, 68,  86,  90, 106, 107, 164)
+
+#combine all to one data frame
+t <- ldply(simp)
+library(dplyr)
+
+t$var <- as.vector.factor(t$var)
+t$var <- as.numeric(t$var)
+
+newdf <- t %>% group_by(comp) %>% summarise("mean" = mean(var))
+
+ind <- newdf$comp %in% topcomp 
+
+final <- newdf[ind, ]
+
+newdf <- summarise(t, )
+# get mean variance explained per compound (out of 12)
+
+for (e in topcomp) {
+        
+}
 

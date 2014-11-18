@@ -2,12 +2,16 @@
 
 require(vegan)
 source("ParsModel.R")
-scent.abundance <- as.data.frame(t(read.csv(".\\csv_files\\scent abundances.csv",row.names=1))) 
+
+scent_abundance <- as.data.frame(t(read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                                                  "projects\\sealscent\\data_files\\",
+                                                  "Rdata\\csv_files\\scent abundances.csv", 
+                                                  sep = ""), row.names=1)))
 
 
 # Scent Mothership script has to be run
-source("ScentResults.R")
-res <- ScentResults("all","fa", beach = 0)
+source("all_scent.R")
+res <- all_scent("all", beach = 0)
 
 # subset results list output
 relate.df <- res[[1]]
@@ -54,7 +58,7 @@ beachdata <- het.df[, -2]
 beachdata$het <- as.factor(factors$Beach)
 names(beachdata)[1] <- "beach"
 
-BeachModel <- ParsModel(beachdata, family="binomial")
+mod <- glm(beachdata$beach ~. , data = beachdata[, 4:5], family = binomial)
 
 # relatedness models wioth ecodist mantel
 source("all_scent.R")

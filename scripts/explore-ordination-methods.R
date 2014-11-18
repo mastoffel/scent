@@ -1,6 +1,5 @@
 ## script to explore different ordination methods
 
-setwd("C:/Users/Martin/Studium/MSc.Behaviour/Research/Seal Scent/R code/Raw scripts")
 
 # already standardized and transformed, transposed abundance matrix
 scent.abundance <- as.data.frame(t(read.csv(".\\csv_files\\scent abundances.csv",row.names=1))) 

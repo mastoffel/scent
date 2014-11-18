@@ -1,0 +1,3 @@
+Log file path: C:\Users\Martin\Studium\projects\sealscent\Rscripts\mtDNA\Arlequin_log.txt
+Core Routine Directory: C:/Program Files/Arlequin/WinArl35/
+Random number generator initialized with lidum=-878263

@@ -1,4 +1,4 @@
-# coordinates analysis: TO DO: relatedness!
+# geographical euclidian coordinates analysis: TO DO: relatedness!
 
 library(ggplot2)
 library(vegan)

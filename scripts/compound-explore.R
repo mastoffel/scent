@@ -45,7 +45,7 @@ factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
 
 
 # subset beach
-scent_beach <- scent_abundance[factors$Beach==2, ]
+scent_beach <- scent_abundance
 
 # 
 len <- nrow(scent_beach)
@@ -53,10 +53,10 @@ abund_mums <- scent_beach[1:(len/2), ]
 abund_pups <- scent_beach[(1+(len/2)):len, ]
 
 simper_mp_ind <- c(58,60,68,74,86,90,96,107,164,181,189,209)
-# simper_mp_ind<- c(36,52,86,88,96,103,110,203,206,207) ## this is RELATEDNESS!!!
+rel<- c(36,52,86,88,96,103,110,203,206,207) ## this is RELATEDNESS!!!
 
-names(scent_abundance)[simper_mp_ind]
-
+names(scent_abundance)[rel]
+# pheromones: 86, 96
 # plotting mum vs pup concentration in best mum-pup substances------------------
 
 plotM <- function(l){

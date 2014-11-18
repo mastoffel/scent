@@ -1,3 +1,5 @@
+# pairwise relatedness from genotype data with demerelate package
+
 library(Demerelate)
 gen <- read.table("C://Users//Martin//Studium//MSc.Behaviour//Research//Seal Scent//R code//raw scripts//41_loci.txt", header = TRUE)
 gentest <- gen[, 1:8]

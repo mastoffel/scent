@@ -9,6 +9,7 @@ library(ggplot2)
 source("multiplot.R")
 library(extrafont)
 library(extrafontdb)
+
 # Needed only on Windows - run once per R session
 # Adjust the path to match your installation of Ghostscript
 Sys.setenv(R_GSCMD="C:/Program Files/gs/gs9.14/bin/gswin64c.exe")

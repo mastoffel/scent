@@ -1,17 +1,21 @@
 # gene files
-library(hierfstat)
-library(diveRsity)
+
 library(StAMPP)
+library(hierfstat)
 library(pegas)
+
 # 41 loci genotype file
 genotypes <- read.table(".\\txt\\raw_41loci_ordered.txt", na.strings = "NA", row.names = 1)
 
-# factors
+# factor
 factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                          "MSc.Behaviour\\Research\\Seal Scent\\",
-                          "R code\\data\\csv_files\\",
+                          "projects\\sealscent\\data_files\\",
+                          "Rdata\\csv_files\\",
                           "factors.csv", sep = ""),
-                          row.names=1) 
+                        row.names=1) 
 
-data(potato)
-data(Big_data)
+gene <- cbind(factors$Beach, genotypes)
+names(gene)[1] <- "Beach"
+library(dplyr)
+
+gene <- gene[order(gene$Beach), ]

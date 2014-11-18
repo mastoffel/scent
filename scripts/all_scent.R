@@ -1,5 +1,5 @@
 all_scent <- function(subgroup, beach) {
-# Main script for analysing scent profiles and associations with genetics
+# Main script, gets all results at ones
 
 # laoding functions ------------------------------------------------------------
 source("get_scores.R")
@@ -14,35 +14,35 @@ source("het_results.R")
 #               scent.abundance.pa.csv
 
 scent_abundance <- as.data.frame(t(read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                                  "MSc.Behaviour\\Research\\Seal Scent\\R code\\",
-                                                  "data\\csv_files\\scent abundances.csv", 
+                                                  "projects\\sealscent\\data_files\\",
+                                                  "Rdata\\csv_files\\scent abundances.csv", 
                                                   sep = ""), row.names=1)))
 
 # diversity measures
 scent_diversity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                  "MSc.Behaviour\\Research\\Seal Scent\\",
-                                  "R code\\data\\csv_files\\",
+                                  "projects\\sealscent\\data_files\\",
+                                  "Rdata\\csv_files\\",
                                   "scent diversity.csv", sep = ""),
                             row.names=1)
 
 # relatedness matrix (old: relatedness_41loci.csv)
 relatedness <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                              "MSc.Behaviour\\Research\\Seal Scent\\",
-                              "R code\\data\\csv_files\\",
+                              "projects\\sealscent\\data_files\\",
+                              "Rdata\\csv_files\\",
                               "relatednessnew.csv", sep = ""),
                         row.names=1)
 
 ## heterozygosity SH
 heterozygosity <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                                 "MSc.Behaviour\\Research\\Seal Scent\\",
-                                 "R code\\data\\csv_files\\",
+                                 "projects\\sealscent\\data_files\\",
+                                 "Rdata\\csv_files\\",
                                  "heterozygosity_41loci.csv", sep = ""),
                            row.names=1) 
 
 # beach and family factor
 factors <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
-                          "MSc.Behaviour\\Research\\Seal Scent\\",
-                          "R code\\data\\csv_files\\",
+                          "projects\\sealscent\\data_files\\",
+                          "Rdata\\csv_files\\",
                           "factors.csv", sep = ""),
                     row.names=1) 
 

@@ -10,6 +10,21 @@ rel_per_loc <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
                                   "locirelate.csv", sep = ""),
                                   row.names=1)
 
+rel_per_loc2 <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                               "projects\\sealscent\\data_files\\",
+                               "Rdata\\csv_files\\",
+                               "locirelate2.csv", sep = ""),
+                                row.names=1)
+
+sig <- read.csv(paste("C:\\Users\\Martin\\Studium\\",
+                               "projects\\sealscent\\data_files\\",
+                               "Rdata\\csv_files\\",
+                               "locirelate2_sig.csv", sep = ""),
+                                row.names=1)
+
+sig_sum <- SumResults(sig)
+
+rel_per_loc <- rbind(rel_per_loc, rel_per_loc2)
 # get mean, sd and se per loci-number in table
 loc_sum <- SumResults(rel_per_loc)
 

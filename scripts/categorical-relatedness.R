@@ -1,3 +1,5 @@
+# deviding relatedness in categories and plot against relatedness
+
 library(plyr)
 library(dplyr)
 source("summarySE.R")

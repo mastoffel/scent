@@ -1,5 +1,5 @@
 get_scores <- function(abundances, method = "fa", num_dim = 4, 
-                       rotation = "varimax") {
+                       rotation = "promax") {
         library(HDMD)
         library(vegan)
         library(magrittr)
